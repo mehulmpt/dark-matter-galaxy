@@ -1,7 +1,3 @@
-'use strict';
-
-import p5 from 'p5'
-
 let r = 0
 let t = 0
 const particles = 2000
