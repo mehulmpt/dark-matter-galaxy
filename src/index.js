@@ -17,7 +17,7 @@ let img
 let darkMatter = false
 
 function preload() {
-	img = loadImage(`/bg.jpg`);
+	img = loadImage(`./bg.jpg`);
 } 
 
 function setup() {
