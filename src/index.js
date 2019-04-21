@@ -6,9 +6,9 @@ let r = 0
 let t = 0
 const particles = 2000
 
+const VERY_FAST = 2
 const MEDIUM_SPEED = 0.0025
 const FAST_SPEED = 0.02
-const VERY_FAST = 2
 const SLOW_SPEED = 0.001
 
 const width = window.innerWidth
@@ -36,6 +36,7 @@ function setup() {
 }
 
 const angles = []
+let radiusInc = 0
 
 function draw() {
 	//clear()
@@ -43,15 +44,12 @@ function draw() {
 	//background(0, 0, 0)
 	
 	stroke(255)//, 0, 0)
-	
-	var i
-	let radiusInc = 0
 
-	let rMax = 0
+	let delta = 0.07
 
-	for (i = 0; i < particles; i++) {
+	for (let i = 0; i < particles; i++) {
 		let angle
-		r = (noise(i) + 0.001) * height + radiusInc //noise(i+.1) * Math.min(width, height)
+		r = (noise(i) + 0.001) * height + radiusInc + delta //noise(i+.1) * Math.min(width, height)
 
 		if(darkMatter) {
 			point(width/2 + cos(angles[i]) * r, height/2 + sin(angles[i]) * r /2.5)
@@ -61,8 +59,10 @@ function draw() {
 			point(width/2 + cos(angle) * r, height/2 + sin(angle) * r /2.5)
 		}
 
-		radiusInc += 0.01
-		if(r > width) {
+		//radiusInc += 0.00001
+		delta += 400/particles
+
+		if(radiusInc > 0.1) {
 			console.log(`Resetting radius`)
 			radiusInc = 0
 		}
